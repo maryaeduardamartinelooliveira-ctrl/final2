@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Área do Paciente — Saúde  click</title>
+</head>
+
+<body>
+  <header>
+    <p>🏥Saúde  click </p>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="especialidades.html">Especialidades</a>
+      <a href="medicos.html">Médicos</a>
+      <a href="agendar.html">Agendar Consulta</a>
+      <a href="paciente.html">Área do Paciente</a>
+      <a href="contato.html">Contato</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Área do Paciente</h1>
+
+    <h2>Entrar</h2>
+    <form id="form-login">
+      <label for="login-email">E-mail</label><br>
+      <input type="email" id="login-email">
+      <br><br>
+
+      <label for="login-senha">Senha</label><br>
+      <input type="password" id="login-senha">
+      <br><br>
+
+      <button type="submit">Entrar</button>
+    </form>
+    <div class="botões">
+
+      <h2>Criar conta</h2>
+      <form id="form-cadastro">
+    </div>
+    <label for="cadastro-nome">Nome completo</label><br>
+    <input type="text" id="cadastro-nome">
+    <br><br>
+
+    <label for="cadastro-email">E-mail</label><br>
+    <input type="email" id="cadastro-email">
+    <br><br>
+
+    <label for="cadastro-senha">Senha</label><br>
+    <input type="password" id="cadastro-senha">
+    <br><br>
+
+    <button type="submit">Criar conta</button>
+
+    </form>
+
+    <div id="minhas-consultas" style="display:none;">
+      <h2>Minha consulta marcada</h2>
+      <p id="texto-consulta"></p>
+    </div>
+
+  </main>
+
+  <script>
+    const formCadastro = document.querySelector("#form-cadastro");
+
+    formCadastro.addEventListener("submit", function (evento) {
+      evento.preventDefault();
+
+      const nome = document.querySelector("#cadastro-nome").value;
+      const email = document.querySelector("#cadastro-email").value;
+      const senha = document.querySelector("#cadastro-senha").value;
+
+      localStorage.setItem("paciente-nome", nome);
+      localStorage.setItem("paciente-email", email);
+      localStorage.setItem("paciente-senha", senha);
+
+      alert("Conta criada com sucesso! Agora você pode entrar.");
+    });
+
+    const formLogin = document.querySelector("#form-login");
+    const areaConsultas = document.querySelector("#minhas-consultas");
+    const textoConsulta = document.querySelector("#texto-consulta");
+
+    formLogin.addEventListener("submit", function (evento) {
+      evento.preventDefault();
+
+      const email = document.querySelector("#login-email").value;
+      const senha = document.querySelector("#login-senha").value;
+      const emailSalvo = localStorage.getItem("paciente-email");
+      const senhaSalva = localStorage.getItem("paciente-senha");
+
+      if (email == emailSalvo && senha == senhaSalva) {
+        alert("Login realizado com sucesso!");
+
+        const especialidade = localStorage.getItem("consulta-especialidade");
+        const medico = localStorage.getItem("consulta-medico");
+        const data = localStorage.getItem("consulta-data");
+        const hora = localStorage.getItem("consulta-hora");
+
+        if (especialidade) {
+          textoConsulta.textContent = especialidade + " com " + medico + " em " + data + " às " + hora;
+        } else {
+          textoConsulta.textContent = "Você ainda não tem nenhuma consulta marcada.";
+        }
+        areaConsultas.style.display = "block";
+
+      } else {
+        alert("E-mail ou senha incorretos.");
+      }
+    });
+    const btnCancelar = document.querySelector("#btn-cancelar");
+
+    btnCancelar.addEventListener("click", function () {
+      localStorage.removeItem("consulta-especialidade");
+      localStorage.removeItem("consulta-medico");
+      localStorage.removeItem("consulta-data");
+      localStorage.removeItem("consulta-hora");
+      localStorage.removeItem("consulta-email");
+
+      textoConsulta.textContent = "Você não tem nenhuma consulta marcada.";
+      alert("Consulta cancelada com sucesso.");
+    });
+
+  </script>
+
+</body>
+
+</html>
+<footer>
+        <p>&COPY;2026 Saúde Click.Todos os direitos reservados.</p>
+    </footer>

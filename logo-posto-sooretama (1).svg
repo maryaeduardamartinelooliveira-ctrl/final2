@@ -1,0 +1,21 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Círculo de fundo -->
+  <circle cx="200" cy="170" r="150" fill="#125097"/>
+  <circle cx="200" cy="170" r="150" fill="none" stroke="#0D3A6E" stroke-width="6"/>
+
+  <!-- Cruz de saúde (branca) -->
+  <rect x="175" y="90" width="50" height="160" rx="10" fill="#FFFFFF"/>
+  <rect x="120" y="145" width="160" height="50" rx="10" fill="#FFFFFF"/>
+
+  <!-- Gota estilizada abraçando a cruz -->
+  <path d="M 200 60
+           C 235 100, 265 130, 265 165
+           C 265 195, 240 220, 200 220
+           C 160 220, 135 195, 135 165
+           C 135 130, 165 100, 200 60 Z"
+        fill="none" stroke="#7FB3E8" stroke-width="6" opacity="0.6"/>
+
+  <!-- Nome do posto -->
+  <text x="200" y="355" font-family="Arial, sans-serif" font-size="34" font-weight="bold"
+        fill="#125097" text-anchor="middle">Posto de Saúde</text>
+</svg>
